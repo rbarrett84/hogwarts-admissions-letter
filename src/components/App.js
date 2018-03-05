@@ -6,24 +6,31 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // Hint: Use this to keep track of whether the user has checked/unchecked the box
+      accepted: true
     }
 
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
   };
 
   handleCheckboxChange(event) {
-    // Write code to update the letter state here!
-    // Hint: Where and how are you going to use this function?
+    this.setState({ accepted: this.state.accepted})
+
   }
 
   render() {
+    let letter = null;
+
+    if (!this.state.accepted) {
+      letter = <RejectionLetterText />
+    } else {
+      letter = <AcceptanceLetterText />
+    }
 
     return (
       <div>
         <div className="letter-body">
           <div className="small-12 small-centered text-center columns">
-            <input type="checkbox" />
+            <input type="checkbox" checked={!this.state.accepted} onChange={this.handleCheckboxChange} />
             <label>
               <h5>Rejected?</h5>
             </label>
