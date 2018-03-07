@@ -13,18 +13,10 @@ class App extends React.Component {
   };
 
   handleCheckboxChange(event) {
-    this.setState({ accepted: false })
+    this.setState({ accepted: !this.state.accepted })
   }
 
   render() {
-    let letter;
-
-    if (!this.state.accepted) {
-      letter = <RejectionLetterText />
-    } else {
-      letter = <AcceptanceLetterText />
-    }
-
     return (
       <div>
         <div className="letter-body">
@@ -45,7 +37,7 @@ class App extends React.Component {
           <p>Dear Addressee,</p>
           <div>
 
-            {letter}
+            {this.state.accepted ? <AcceptanceLetterText/> : <RejectionLetterText/> }
 
           </div>
           <br />
