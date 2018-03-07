@@ -7,18 +7,17 @@ class App extends React.Component {
     super(props);
     this.state = {
       accepted: true
-    }
+  }
 
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
   };
 
   handleCheckboxChange(event) {
-    this.setState({ accepted: this.state.accepted})
-
+    this.setState({ accepted: false })
   }
 
   render() {
-    let letter = null;
+    let letter;
 
     if (!this.state.accepted) {
       letter = <RejectionLetterText />
@@ -45,8 +44,9 @@ class App extends React.Component {
           <br />
           <p>Dear Addressee,</p>
           <div>
-            <AcceptanceLetterText />
-            // You'll need to change this to show either the AcceptanceLetterText or RejectionLetterText when the user toggles the checkbox!
+
+            {letter}
+
           </div>
           <br />
           <p>Yours sincerely,</p>
